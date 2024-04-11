@@ -4,6 +4,7 @@ import cors from 'cors';
 import fileUpload from "express-fileupload";
 import cookieParser from "cookie-parser";
 import { dbConnection } from "./database/dbConnection.js";
+import messageRouter from "./router/messageRouter.js"
 const app = express();
 config({ path: "./config/config.env" });
 
@@ -26,5 +27,8 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+
+// Message Router
+app.use("/api/v1/message", messageRouter);
 dbConnection();
 export default app
