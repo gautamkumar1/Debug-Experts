@@ -7,12 +7,12 @@ const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: [true, "Full Name Is Required!"],
-    minLength: [10, "Full Name Must Contain At Least 10 Characters!"],
+    minLength: [6, "Full Name Must Contain At Least 6 Characters!"],
   },
   githubUsername: {
     type: String,
     required: [true, "Github Username Is Required!"],
-    minLength: [6, "Github Username Must Contain At Least 6 Characters!"],
+    minLength: [4, "Github Username Must Contain At Least 4 Characters!"],
   },
   email: {
     type: String,

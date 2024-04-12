@@ -7,6 +7,7 @@ import { dbConnection } from "./database/dbConnection.js";
 import messageRouter from "./router/messageRouter.js"
 import { errorMiddleware } from './middlewares/errorMiddleware.js';
 import userRouter from "./router/userRouter.js"
+import appointmentRouter from "./router/appointmentRouter.js"
 const app = express();
 config({ path: "./config/config.env" });
 
@@ -34,6 +35,8 @@ app.use(
 app.use("/api/v1/message", messageRouter);
 // User Router
 app.use("/api/v1/user", userRouter);
+// Appointment Router
+app.use("/api/v1/appointment", appointmentRouter);
 
 dbConnection();
 
