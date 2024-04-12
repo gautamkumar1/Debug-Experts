@@ -77,7 +77,7 @@ export const getAllAppointments = catchAsyncErrors(async (req, res, next) => {
 
 /*
 **************************
-//* UPDATED APPOINTMENT LOGIC
+//* UPDATED APPOINTMENT STATUS LOGIC
 **************************
 */
 
@@ -96,6 +96,27 @@ export const updateAppointmentStatus = catchAsyncErrors(
     res.status(200).json({
       success: true,
       message: "Appointment Status Updated!",
+      appointment
     });
   }
 );
+
+/*
+**************************
+//* DELETE APPOINTMENT LOGIC
+**************************
+*/
+
+export const deleteAppointment = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const appointment = await Appointment.findById(id);
+  if (!appointment) {
+    return next(new ErrorHandler("Appointment Not Found!", 404));
+  }
+  await appointment.deleteOne();
+  res.status(200).json({
+    success: true,
+    message: "Appointment Deleted!",
+    appointment
+  });
+});
