@@ -100,4 +100,18 @@ export const getAllExperts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+/*
+**************************
+//* GET ALL USER DETAILS LOGIC
+**************************
+*/
+
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = req.user;
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
 

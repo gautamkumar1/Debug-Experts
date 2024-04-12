@@ -25,7 +25,7 @@ export const isAdminAuthenticated = catchAsyncErrors(async (req, res, next) => {
 // Middleware to authenticate frontend users
 export const isStudentAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
-    const token = req.cookies.patientToken;
+    const token = req.cookies.studentToken;
     if (!token) {
       return next(new ErrorHandler("User is not authenticated!", 400));
     }
