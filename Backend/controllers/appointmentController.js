@@ -60,3 +60,17 @@ export const postAppointment = catchAsyncErrors(async (req, res, next) => {
     message: "Appointment Send!",
   });
 });
+
+/*
+**************************
+//* ALL APPOINTMENT LOGIC
+**************************
+*/
+
+export const getAllAppointments = catchAsyncErrors(async (req, res, next) => {
+  const appointments = await Appointment.find();
+  res.status(200).json({
+    success: true,
+    appointments,
+  });
+});
