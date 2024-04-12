@@ -24,7 +24,7 @@ export const studentRegister = catchAsyncErrors(async (req, res, next) => {
     githubUsername, 
     email, 
     password,
-    role: "Student",
+    role
   });
  generateToken(user,"User Registered Successfully" ,200,res)
 });
@@ -83,6 +83,20 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "New Admin Registered",
     admin,
+  });
+});
+
+/*
+**************************
+//* GET ALL EXPERTS LOGIC
+**************************
+*/
+
+export const getAllExperts = catchAsyncErrors(async (req, res, next) => {
+  const experts = await User.find({ role: "Expert" });
+  res.status(200).json({
+    success: true,
+    experts,
   });
 });
 
