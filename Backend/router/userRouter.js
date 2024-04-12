@@ -7,6 +7,7 @@ import {
   getUserDetails,
   logoutStudent,
   logoutAdmin,
+  addNewExpert,
 } from "../controllers/userController.js";
 import { isAdminAuthenticated,isStudentAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
@@ -50,4 +51,6 @@ router.get("/student/me", isStudentAuthenticated, getUserDetails);
 router.get("/student/logout", isStudentAuthenticated, logoutStudent);
 // Logout Admin router
 router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
+// ADDED NEW EXPERT
+router.post("/expert/addnew", isAdminAuthenticated, addNewExpert);
 export default router;
