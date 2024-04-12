@@ -1,6 +1,7 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { User } from "../models/userSchema.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
+import { generateToken } from "../utils/jwtToken.js";
 /*
 **************************
 //* STUDENT REGISTRATION LOGIC
@@ -24,10 +25,7 @@ export const studentRegister = catchAsyncErrors(async (req, res, next) => {
     password,
     role: "Student",
   });
-  res.status(200).json({
-    success: true,
-    message: "User Registered Successfully!",
-  });
+ generateToken(user,"User Registered Successfully" ,200,res)
 });
 /*
 **************************
@@ -56,10 +54,6 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if (role !== user.role) {
     return next(new ErrorHandler(`User Not Found With This Role!`, 400));
   }
-   res.status(200).json({
-     success: true,
-     message: "User Logged In Successfully!",
-   });
-  // generateToken(user, "Login Successfully!", 201, res);
+  generateToken(user, "Login Successfully!", 201, res);
 });
 
