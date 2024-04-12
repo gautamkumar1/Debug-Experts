@@ -5,6 +5,8 @@ import {
   addNewAdmin,
   getAllExperts,
   getUserDetails,
+  logoutStudent,
+  logoutAdmin,
 } from "../controllers/userController.js";
 import { isAdminAuthenticated,isStudentAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
@@ -44,4 +46,8 @@ router.get("/admin/me", isAdminAuthenticated,getUserDetails);
 **************************
 */
 router.get("/student/me", isStudentAuthenticated, getUserDetails);
+// Student Logout router
+router.get("/student/logout", isStudentAuthenticated, logoutStudent);
+// Logout Admin router
+router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
 export default router;
